@@ -1,6 +1,6 @@
-#include<18F452.h>
+#include<18F45K20.h>
 
-#use delay(crystal = 10MHz, clock = 40MHz)
+#use delay(crystal = 15MHz, clock = 60MHz)
 #use rs232(xmit = PIN_C6, baud = 9600)
 
 #fuses H4
@@ -19,12 +19,12 @@ void ext_isr() {
 #INT_TIMER0
 void timer0_isr() {
 	clear_interrupt(INT_TIMER0);
-	set_timer0(55535);
+	set_timer0(50535);
 	tick++;
 }
 
 int main(void) {
-	set_timer0(55535);
+	set_timer0(50535);
 	setup_timer_0(T0_INTERNAL);
 	clear_interrupt(INT_TIMER0);
 	clear_interrupt(INT_EXT);
