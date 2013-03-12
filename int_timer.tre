@@ -1,0 +1,9 @@
+юдint_timer
+   юдmain  0/90  Ram=1
+      цд??0??
+      цд@delay_ms1  0/40  Ram=1
+      цд@delay_ms1  0/40  Ram=1
+      цд@PSTRINGC_65  0/32  Ram=2
+      Ё  юд@PUTCHAR_1_  0/72  Ram=1
+      юд@PSTRINGC_65  0/32  Ram=2
+         юд@PUTCHAR_1_  0/72  Ram=1

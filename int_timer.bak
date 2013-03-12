@@ -1,0 +1,37 @@
+#include<18f45k20.h>
+#use delay(crystal = 15MHz, clock = 60MHz)
+#use rs232(xmit = PIN_C6, baud = 9600)
+
+#fuses H4
+
+static int t0_config = T0_INTERNAL | T0_DIV_4;
+static long t0_cont = 0xFFFF - 37500;
+static long long clock;
+
+
+#INT_TIMER0
+void isr_timer0() {
+   clear_interrupt(INT_TIMER0);
+   clock++;
+}
+
+#INT_EXT
+void isr_ext() {
+   clear_interrupt(INT_EXT);
+   
+
+int main(void) {
+   long nrDisparos;   
+   
+   delay_ms(1000);
+   printf("Inicio");
+   setup_timer_0(T0_OFF);
+   enable_interrupts(INT_EXT_L2H);
+   enable_interrupts(GLOBAL);
+   printf("Ok");
+   while(TRUE) {
+      if(!clock && !nrD) {
+         printf("Nenhum disparo");
+   }
+   return 0;
+}

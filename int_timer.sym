@@ -1,0 +1,72 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+005     main.@SCRATCH1
+005     @PSTRINGC_65.@SCRATCH1
+006     @delay_ms1.P1
+006     @PSTRINGC_65.@SCRATCH2
+007     @PUTCHAR_1_.P1
+F7A.6   C2OUT
+F7B.6   C1OUT
+F83     PSP_DATA
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @WRITE_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0012  @delay_ms1
+003A  @PUTCHAR_1_
+00A2  main
+0004  @const74
+0082  @PSTRINGC_65
+000A  @const76
+00A2  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\cuki\Desktop\
+
+Project Files:
+    int_timer.c                                             [08-mar-13 15:42  CRC=2DDD63E0]
+    ..\..\..\PICC\Devices\18f45k20.h                        [27-jul-11 18:03  CRC=55C31B9C]
+
+Source signature=D9639B18
+
+Units:
+    C:\Users\cuki\Desktop\int_timer (main)
+
+Compiler Settings:
+    Processor:      PIC18F45K20
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      int_timer.err
+    Ext Symbols: int_timer.esym
+    INHX32:      int_timer.hex
+    Symbols:     int_timer.sym
+    List:        int_timer.lst
+    Debug/COFF:  int_timer.cof
+    Project:     int_timer.PJT
+    Call Tree:   int_timer.tre
+    Statistics:  int_timer.STA

@@ -1,0 +1,47 @@
+
+ROM used: 252 (1%)
+          252 (1%) including unused fragments
+
+          0 Average locations per line
+          36 Average locations per statement
+
+RAM used: 5 (0%) at main() level
+          7 (0%) worst case
+
+Stack used: 2 worst case (out of 31 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   16     7 100  int_timer.c
+  494     0   0  ..\..\..\PICC\Devices\18f45k20.h
+----- -----
+  510     7 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   8   1    50  1.8  @delay_ms1
+0     72  14   1    50  1.8  @PUTCHAR_1_
+0     90  18   1   110  2.0  main
+0      6   1   0             @const74
+0     32   6   2             @PSTRINGC_65
+0      8   2   0             @const76
+
+Program metrics:
+    Functions               3
+    Statements              7
+    Comments                109
+    Volume (V)              298
+    Difficilty (D)          5.1
+    Effort to implement (E) 1515
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    138
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07FFE   248  32516  
+
+
+
