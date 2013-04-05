@@ -10,6 +10,7 @@ static long nrDisparos;
 
 #INT_EXT
 void ext_isr() {
+	delay_us(10);
 	clear_interrupt(INT_EXT);
 	nrDisparos++;
 	tempo = tick;
@@ -31,9 +32,10 @@ int main(void) {
 	enable_interrupts(INT_EXT_H2L);
 	enable_interrupts(INT_TIMER0);
 	enable_interrupts(GLOBAL);
-	while (true) {
+	while (TRUE) {
 		printf("\fDisparos: %Lu", nrDisparos);
 		printf("\n\rTempo: %.3f", (float) tempo / 1000);
 		delay_ms(500);
 	}
+	return 0;
 }

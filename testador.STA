@@ -1,0 +1,45 @@
+
+ROM used: 240 (1%)
+          240 (1%) including unused fragments
+
+          1 Average locations per line
+          22 Average locations per statement
+
+RAM used: 25 (2%) at main() level
+          25 (2%) worst case
+
+Stack used: 1 worst case (out of 31 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   31    11 100  testador.c
+  359     0   0  C:\PICC\devices\18F452.h
+----- -----
+  390    11 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     20   4   0    48  1.1  timer0_isr
+0     50  10   0   143  2.6  MAIN
+
+Program metrics:
+    Functions               2
+    Statements              11
+    Comments                95
+    Volume (V)              232
+    Difficilty (D)          3.8
+    Effort to implement (E) 870
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    71
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-000AC   166  0  
+000AE-07FFE    70  32524  
+
+
+
