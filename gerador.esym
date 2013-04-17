@@ -1,7 +1,7 @@
 D G "__PCH__" 0 0 ""4.124""
 D G "__DEVICE__" 0 0 ""
-D G "__DATE__" 0 0 ""08-abr-13""
-D G "__TIME__" 0 0 ""16:25:01"" "* gerador.c"
+D G "__DATE__" 0 0 ""17-abr-13""
+D G "__TIME__" 0 0 ""17:39:18"" "* gerador.c"
 C G "" 0 1 1 "*"
 C G "" 0 1 1 "*"
 d G "PIN_A0" 1 22 "31744"
@@ -229,9 +229,10 @@ d G "INT_BUSCOL" 1 354 "0x00A008"
 d G "INT_LOWVOLT" 1 355 "0x00A004"
 d G "INT_EEPROM" 1 356 "0x00A010"
 V G "ctrl" 0 12 "int1"
-V G "cont" 0 13 "int16"
-F G "isr_ccp1" 0 16 "void()"
-F G "MAIN" 0 28 "int8()"
+V G "ctrl2" 0 12 "int1"
+F G "isr_ccp1" 0 15 "void()"
+F G "isr_ccp2" 0 25 "void()"
+F G "MAIN" 0 34 "int8()"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 0
