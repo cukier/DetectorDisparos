@@ -9,7 +9,8 @@
 #fuses H4,NOWDT,PROTECT,NOLVP
 #use delay(crystal=10MHz, clock=40MHz)
 
-short ctrl;
+static short ctrl;
+static long cont;
 
 #INT_CCP1
 void isr_ccp1(void) {
@@ -19,14 +20,17 @@ void isr_ccp1(void) {
 		setup_ccp1(CCP_COMPARE_CLR_ON_MATCH);
 	else
 		setup_ccp1(CCP_COMPARE_SET_ON_MATCH);
+	cont++;
+	if (cont == 256)
+		setup_ccp1(CCP_OFF);
 }
 
 int main(void) {
 	clear_interrupt(INT_CCP1);
 	enable_interrupts(INT_CCP1);
 	enable_interrupts(GLOBAL);
-	setup_timer_1(T1_INTERNAL | T1_DIV_BY_2);
-	CCP_1 = 50000;
+	setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
+	CCP_1 = 60000;
 	set_timer1(0);
 	setup_ccp1(CCP_COMPARE_CLR_ON_MATCH);
 	while (TRUE)

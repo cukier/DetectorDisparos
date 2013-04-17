@@ -1,0 +1,169 @@
+CCS PCH C Compiler, Version 4.124, 5967               08-abr-13 16:25
+
+               Filename: E:\Eletronica\Projetos\DetectorDisparos\gerador.lst
+
+               ROM used: 288 bytes (1%)
+                         Largest free fragment is 32476
+               RAM used: 28 (2%) at main() level
+                         28 (2%) worst case
+               Stack:    1 worst case (0 in main + 1 for interrupts)
+
+*
+0000:  GOTO   00E4
+*
+0008:  MOVWF  04
+000A:  MOVFF  FD8,05
+000E:  MOVFF  FE0,06
+0012:  MOVLB  0
+0014:  MOVFF  FE9,0C
+0018:  MOVFF  FEA,07
+001C:  MOVFF  FE1,08
+0020:  MOVFF  FE2,09
+0024:  MOVFF  FD9,0A
+0028:  MOVFF  FDA,0B
+002C:  MOVFF  FF3,12
+0030:  MOVFF  FF4,13
+0034:  MOVFF  FFA,14
+0038:  MOVFF  FF5,15
+003C:  MOVFF  FF6,16
+0040:  MOVFF  FF7,17
+0044:  MOVFF  00,0E
+0048:  MOVFF  01,0F
+004C:  MOVFF  02,10
+0050:  MOVFF  03,11
+0054:  BTFSS  F9D.2
+0056:  GOTO   0060
+005A:  BTFSC  F9E.2
+005C:  GOTO   00AE
+0060:  MOVFF  0E,00
+0064:  MOVFF  0F,01
+0068:  MOVFF  10,02
+006C:  MOVFF  11,03
+0070:  MOVFF  0C,FE9
+0074:  MOVFF  07,FEA
+0078:  BSF    07.7
+007A:  MOVFF  08,FE1
+007E:  MOVFF  09,FE2
+0082:  MOVFF  0A,FD9
+0086:  MOVFF  0B,FDA
+008A:  MOVFF  12,FF3
+008E:  MOVFF  13,FF4
+0092:  MOVFF  14,FFA
+0096:  MOVFF  15,FF5
+009A:  MOVFF  16,FF6
+009E:  MOVFF  17,FF7
+00A2:  MOVF   04,W
+00A4:  MOVFF  06,FE0
+00A8:  MOVFF  05,FD8
+00AC:  RETFIE 0
+.................... /* 
+....................  * gerador.c 
+....................  * 
+....................  *  Created on: 05/04/2013 
+....................  *      Author: cuki 
+....................  */ 
+.................... #include <18F452.h> 
+.................... //////// Standard Header file for the PIC18F452 device //////////////// 
+.................... #device PIC18F452 
+.................... #list 
+....................  
+....................  
+.................... #fuses H4,NOWDT,PROTECT,NOLVP 
+.................... #use delay(crystal=10MHz, clock=40MHz) 
+....................  
+.................... static short ctrl; 
+.................... static long cont; 
+....................  
+.................... #INT_CCP1 
+.................... void isr_ccp1(void) { 
+.................... 	clear_interrupt(INT_CCP1); 
+00AE:  BCF    F9E.2
+.................... 	set_timer1(0); 
+00B0:  CLRF   FCF
+00B2:  CLRF   FCE
+.................... 	if (ctrl++) 
+00B4:  BTG    19.0
+00B6:  BTFSC  19.0
+00B8:  BRA    00C4
+.................... 		setup_ccp1(CCP_COMPARE_CLR_ON_MATCH); 
+00BA:  BCF    F94.2
+00BC:  BSF    F8B.2
+00BE:  MOVLW  09
+00C0:  MOVWF  FBD
+.................... 	else 
+00C2:  BRA    00CC
+.................... 		setup_ccp1(CCP_COMPARE_SET_ON_MATCH); 
+00C4:  BCF    F94.2
+00C6:  BCF    F8B.2
+00C8:  MOVLW  08
+00CA:  MOVWF  FBD
+.................... 	cont++; 
+00CC:  INCF   1A,F
+00CE:  BTFSC  FD8.2
+00D0:  INCF   1B,F
+.................... 	if (cont == 256) 
+00D2:  MOVF   1A,F
+00D4:  BNZ   00DE
+00D6:  DECFSZ 1B,W
+00D8:  BRA    00DE
+.................... 		setup_ccp1(CCP_OFF); 
+00DA:  BSF    F94.2
+00DC:  CLRF   FBD
+.................... } 
+....................  
+00DE:  BCF    F9E.2
+00E0:  GOTO   0060
+.................... int main(void) { 
+00E4:  CLRF   FF8
+00E6:  BCF    FD0.7
+00E8:  BSF    07.7
+00EA:  CLRF   FEA
+00EC:  CLRF   FE9
+00EE:  BSF    FC1.0
+00F0:  BSF    FC1.1
+00F2:  BSF    FC1.2
+00F4:  BCF    FC1.3
+00F6:  BCF    19.0
+00F8:  CLRF   1A
+00FA:  CLRF   1B
+.................... 	clear_interrupt(INT_CCP1); 
+00FC:  BCF    F9E.2
+.................... 	enable_interrupts(INT_CCP1); 
+00FE:  BSF    F9D.2
+.................... 	enable_interrupts(GLOBAL); 
+0100:  MOVLW  C0
+0102:  IORWF  FF2,F
+.................... 	setup_timer_1(T1_INTERNAL | T1_DIV_BY_8); 
+0104:  MOVLW  B5
+0106:  MOVWF  FCD
+.................... 	CCP_1 = 60000; 
+0108:  MOVLW  EA
+010A:  MOVWF  FBF
+010C:  MOVLW  60
+010E:  MOVWF  FBE
+.................... 	set_timer1(0); 
+0110:  CLRF   FCF
+0112:  CLRF   FCE
+.................... 	setup_ccp1(CCP_COMPARE_CLR_ON_MATCH); 
+0114:  BCF    F94.2
+0116:  BSF    F8B.2
+0118:  MOVLW  09
+011A:  MOVWF  FBD
+.................... 	while (TRUE) 
+.................... 		; 
+011C:  BRA    011C
+.................... 	return 0; 
+011E:  MOVLW  00
+0120:  MOVWF  01
+.................... } 
+....................  
+0122:  SLEEP 
+
+Configuration Fuses:
+   Word  1: 2600   H4 NOOSCSEN
+   Word  2: 0E0E   PUT BROWNOUT BORV20 NOWDT WDT128
+   Word  3: 0100   CCP2C1
+   Word  4: 0081   STVREN NOLVP NODEBUG
+   Word  5: C000   PROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
