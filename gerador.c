@@ -4,7 +4,7 @@
  *  Created on: 05/04/2013
  *      Author: cuki
  */
-#include <18F452.h>
+#include <18F252.h>
 
 #fuses H4,NOWDT,PROTECT,NOLVP
 #use delay(crystal=10MHz, clock=40MHz)
